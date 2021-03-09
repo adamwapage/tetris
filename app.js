@@ -12,5 +12,7 @@ function play() {
   board.reset();
   let piece = new Piece(ctx);
   piece.draw();
+
   board.piece = piece;
 }
+
