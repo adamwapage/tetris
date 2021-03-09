@@ -27,7 +27,12 @@ const oTetrimino = [
   [0, 1, width, width + 1],
 ];
 
-const sTetrimino = [];
+const sTetrimino = [
+  [0, width, width + 1, width * 2 + 1],
+  [width + 1, width + 2, width * 2, width * 2 + 1],
+  [0, width, width + 1, width * 2 + 1],
+  [width + 1, width + 2, width * 2, width * 2 + 1],
+];
 
 const tTetrimino = [
   [1, width, width + 1, width + 2],
@@ -35,4 +40,10 @@ const tTetrimino = [
   [width, width + 1, width + 12, width * 2 + 1],
   [1, width, width + 1, width * 2 + 1],
 ];
-const zTetrimino = [];
+
+const zTetromino = [
+  [width, width + 1, width * 2 + 1, width * 2 + 2],
+  [2, width + 1, width + 2, width * 2 + 1],
+  [width, width + 1, width * 2 + 1, width * 2 + 2],
+  [2, width + 1, width + 2, width * 2 + 1],
+];
