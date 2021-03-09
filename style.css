@@ -13,7 +13,8 @@ body {
 .grid {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: 320px 200px;
+  grid-template-columns: 304px 200px;
+  grid-template-rows: 604px;
 }
 
 .right-column {
@@ -24,6 +25,15 @@ body {
 
 .board {
   border: solid 2px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: teal;
+}
+
+.board div {
+  height: 30px;
+  width: 30px;
+  border: solid 1px;
 }
 
 .play-button {
@@ -31,4 +41,8 @@ body {
   font-size: 16px;
   padding: 15px 30px;
   cursor: pointer;
+}
+
+.tetromino {
+  background-color: yellowgreen;
 }
