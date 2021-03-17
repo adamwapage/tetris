@@ -27,7 +27,6 @@ body {
   border: solid 2px;
   display: flex;
   flex-wrap: wrap;
-  background-color: teal;
 }
 
 .board div {
@@ -35,6 +34,11 @@ body {
   width: 30px;
   border: solid 1px;
 }
+
+.board #bottom {
+  border: none;
+}
+
 
 .play-button {
   background-color: #4caf50;
