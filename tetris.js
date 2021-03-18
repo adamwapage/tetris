@@ -1,6 +1,7 @@
 // Creating the game board
 const board = Array.from(document.querySelectorAll('#board div'));
 const width = 10;
+let nextRandom = 0;
 
 const iTetromino = [
   [1, width + 1, width * 2 + 1, width * 3 + 1],
@@ -92,10 +93,12 @@ function moveDown() {
 function stop() {
   if (current.some(index => board[currentPosition + index + width].classList.contains('taken'))) {
     current.forEach(index => board[currentPosition + index].classList.add('taken'));
-    random = Math.floor(Math.random() * theTetrominos.length);
+    random = nextRandom
+    nextRandom = Math.floor(Math.random() * theTetrominos.length);
     current = theTetrominos[random][currentRotation];
     currentPosition = 4;
     draw();
+    displayShape();
   }
 }
 
@@ -143,3 +146,26 @@ function control(e) {
   }
 }
 document.addEventListener('keydown', control);
+
+const displaySquares = Array.from(document.querySelectorAll('.mini-grid div'));
+const displayWidth = 4;
+let displayIndex = 0;
+
+const upNextTetrominos = [
+  [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1],
+  [1, displayWidth + 1, displayWidth * 2 + 1, 2],
+  [displayWidth, displayWidth + 1, displayWidth + 2, displayWidth * 2],
+  [0, 1, displayWidth, displayWidth + 1],
+  [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1],
+  [1, displayWidth, displayWidth + 1, displayWidth + 2],
+  [displayWidth, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 2 + 2],
+];
+
+function displayShape() {
+  displaySquares.forEach(square => {
+    square.classList.remove('tetromino');
+  });
+  upNextTetrominos[nextRandom].forEach(index => {
+    displaySquares[displayIndex + index].classList.add('tetromino')
+  })
+}

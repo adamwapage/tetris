@@ -39,6 +39,18 @@ body {
   border: none;
 }
 
+.mini-grid {
+  height: 120px;
+  width: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  background: blueviolet;
+}
+
+.mini-grid div {
+  height: 30px;
+  width: 30px;
+}
 
 .play-button {
   background-color: #4caf50;
@@ -48,5 +60,5 @@ body {
 }
 
 .tetromino {
-  background-color: yellowgreen;
+  background-color: blue;
 }
