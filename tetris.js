@@ -2,6 +2,7 @@
 const board = Array.from(document.querySelectorAll('#board div'));
 const width = 10;
 let nextRandom = 0;
+let timerId;
 
 const iTetromino = [
   [1, width + 1, width * 2 + 1, width * 3 + 1],
@@ -81,8 +82,6 @@ function undraw() {
   });
 }
 
-timerId = setInterval(moveDown, 700);
-
 function moveDown() {
   undraw();
   currentPosition += width;
@@ -93,7 +92,7 @@ function moveDown() {
 function stop() {
   if (current.some(index => board[currentPosition + index + width].classList.contains('taken'))) {
     current.forEach(index => board[currentPosition + index].classList.add('taken'));
-    random = nextRandom
+    random = nextRandom;
     nextRandom = Math.floor(Math.random() * theTetrominos.length);
     current = theTetrominos[random][currentRotation];
     currentPosition = 4;
@@ -166,6 +165,20 @@ function displayShape() {
     square.classList.remove('tetromino');
   });
   upNextTetrominos[nextRandom].forEach(index => {
-    displaySquares[displayIndex + index].classList.add('tetromino')
-  })
+    displaySquares[displayIndex + index].classList.add('tetromino');
+  });
 }
+
+const playButton = document.querySelector('.play-button');
+playButton.addEventListener('click', () => {
+  if (timerId) {
+    clearInterval(timerId);
+    timerId = null;
+  } else {
+    draw();
+    timerId = setInterval(moveDown, 800);
+    nextRandom = Math.floor(Math.random() * theTetrominos.length);
+    displayShape();
+  }
+});
+
