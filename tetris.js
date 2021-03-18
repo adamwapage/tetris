@@ -80,7 +80,7 @@ function undraw() {
   });
 }
 
-timerId = setInterval(moveDown, 100);
+timerId = setInterval(moveDown, 700);
 
 function moveDown() {
   undraw();
@@ -98,3 +98,48 @@ function stop() {
     draw();
   }
 }
+
+function moveLeft() {
+  undraw();
+  const isAtLeft = current.some(index => (currentPosition + index) % width === 0);
+
+  if (!isAtLeft) currentPosition -= 1;
+  if (current.some(index => board[currentPosition + index].classList.contains('taken'))) {
+    currentPosition += 1;
+  }
+  draw();
+}
+
+function moveRight() {
+  undraw();
+  const isAtRight = current.some(index => (currentPosition + index) % width === width - 1);
+
+  if (!isAtRight) currentPosition += 1;
+  if (current.some(index => board[currentPosition + index].classList.contains('taken'))) {
+    currentPosition -= 1;
+  }
+  draw();
+}
+
+function rotate() {
+  undraw();
+  currentRotation++;
+  if (currentRotation === current.length) {
+    currentRotation = 0;
+  }
+  current = theTetrominos[random][currentRotation];
+  draw();
+}
+
+function control(e) {
+  if (e.keyCode === 37) {
+    moveLeft();
+  } else if (e.keyCode === 38) {
+    rotate();
+  } else if (e.keyCode === 39) {
+    moveRight();
+  } else if (e.keyCode === 40) {
+    moveDown();
+  }
+}
+document.addEventListener('keydown', control);
